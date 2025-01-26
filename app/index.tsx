@@ -16,5 +16,5 @@ export default function App() {
 		return <AppLoading />;
 	}
 
-	return <Redirect href="/sign-up"/>
+	return <Redirect href="/login"/>
 }
