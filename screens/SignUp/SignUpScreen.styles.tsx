@@ -28,12 +28,17 @@ export const styles = StyleSheet.create({
 		color: '#ffffff',
 		fontFamily: 'Urbanist_500Medium'
 	},
-	image: {
+	logo: {
 		resizeMode: "contain",
 		width: 187,
 		height: 100,
 		marginTop: 160,
 		marginBottom: 30,
+	},
+	arrowRight: {
+		resizeMode: "contain",
+		width: 50,
+		height: 50,
 	},
 	header: {
 		marginTop: 10,
@@ -44,8 +49,18 @@ export const styles = StyleSheet.create({
 	formContainer: {
 		marginRight: 30,
 		marginLeft: 30,
+		marginBottom: 35,
 	},
 	formField: {
 		marginBottom: 5,
+	},
+	bottom: {
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	buttonBottom: {
+		backgroundColor: '#c9f207',
+		padding: 10,
+		borderRadius: 50,
 	}
 });

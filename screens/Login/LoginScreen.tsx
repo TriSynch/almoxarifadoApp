@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Alert } from 'react-native';
 import Input from '@/components/Input/Input';
-import Button from '@/components/Button/Button';
+import PrimaryButton from '@/components/PrimaryButton/PrimaryButton';
 import { styles } from './LoginScreen.styles';
 
 const LoginScreen = () => {
@@ -33,7 +33,7 @@ const LoginScreen = () => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <Button title="Entrar" onPress={handleLogin} />
+      <PrimaryButton title="Entrar" onPress={handleLogin} />
     </View>
   );
 };

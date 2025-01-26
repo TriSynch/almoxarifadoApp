@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { styles } from './SignUpScreen.styles'
 import Input from '@/components/Input/Input'
 import DropdownInput from '@/components/DropdownInput/DropdownInput'
@@ -7,11 +7,15 @@ import DropdownInput from '@/components/DropdownInput/DropdownInput'
 export default function SignUpScreen() {
   const [selectedValue, setSelectedValue] = useState('setorOption1')
 
+	function handleClick() {
+		console.log('back')
+	}
+
   return (
     <View style={styles.container}>
       <Image
         source={require('../../assets/images/logo.png')}
-        style={styles.image}
+        style={styles.logo}
       />
       <View style={styles.innerContainer}>
         <View style={styles.header}>
@@ -39,6 +43,15 @@ export default function SignUpScreen() {
             ></DropdownInput>
           </View>
         </View>
+				
+				<View style={styles.bottom}>
+					<TouchableOpacity  style={styles.buttonBottom} onPress={handleClick}>
+					<Image
+						source={require('../../assets/images/arrow-right.png')}
+						style={styles.arrowRight}
+					/>
+					</TouchableOpacity >
+				</View>
       </View>
     </View>
   )
