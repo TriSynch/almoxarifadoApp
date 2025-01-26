@@ -3,9 +3,6 @@ import { View, Text, Alert } from 'react-native';
 import Input from '@/components/Input/Input';
 import Button from '@/components/Button/Button';
 import { styles } from './SignUpScreen.styles';
-import { SplashScreen } from 'expo-router';
-
-SplashScreen.preventAutoHideAsync();
 
 export default function SignUpScreen() {
 	
