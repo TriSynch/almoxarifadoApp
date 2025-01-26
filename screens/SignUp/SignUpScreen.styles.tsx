@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
 		resizeMode: "contain",
 		width: 187,
 		height: 100,
-		marginTop: 160,
+		marginTop: 10,
 		marginBottom: 30,
 	},
 	arrowRight: {

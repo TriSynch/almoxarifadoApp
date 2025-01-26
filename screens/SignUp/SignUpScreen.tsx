@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform } from 'react-native'
 import { styles } from './SignUpScreen.styles'
 import Input from '@/components/Input/Input'
 import DropdownInput from '@/components/DropdownInput/DropdownInput'
@@ -12,12 +12,16 @@ export default function SignUpScreen() {
 	}
 
   return (
+		<KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
     <View style={styles.container}>
       <Image
         source={require('../../assets/images/logo.png')}
         style={styles.logo}
       />
-      <View style={styles.innerContainer}>
+      <ScrollView style={styles.innerContainer}>
         <View style={styles.header}>
           <Text style={styles.h1}>Registrar</Text>
         </View>
@@ -52,7 +56,8 @@ export default function SignUpScreen() {
 					/>
 					</TouchableOpacity >
 				</View>
-      </View>
+      </ScrollView>
     </View>
+		</KeyboardAvoidingView>
   )
 }
