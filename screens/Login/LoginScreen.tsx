@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
-import Input from '../components/input';
-import Button from '../components/button';
+import { View, Text, Alert } from 'react-native';
+import Input from '@/components/Input/Input';
+import Button from '@/components/Button/Button';
+import { styles } from './LoginScreen.styles';
 
-const Login = () => {
+const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -23,6 +24,7 @@ const Login = () => {
         placeholder="Digite seu e-mail"
         value={email}
         onChangeText={setEmail}
+				secureTextEntry={false}
       />
       <Input 
         label="Senha"
@@ -36,19 +38,4 @@ const Login = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-});
-
-export default Login;
+export default LoginScreen;
