@@ -9,7 +9,4 @@
     "typescript",
     "typescriptreact"
   ],
-  "eslint.options": {
-    "overrideConfigFile": "eslint.config.mjs"
-  },
 }

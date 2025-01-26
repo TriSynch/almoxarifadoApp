@@ -1,40 +1,45 @@
-import React, { useState } from 'react';
-import { View, Text, Alert } from 'react-native';
-import Input from '@/components/Input/Input';
-import Button from '@/components/Button/Button';
-import { styles } from './SignUpScreen.styles';
+import React, { useState } from 'react'
+import { View, Text, Image } from 'react-native'
+import { styles } from './SignUpScreen.styles'
+import Input from '@/components/Input/Input'
+import DropdownInput from '@/components/DropdownInput/DropdownInput'
 
 export default function SignUpScreen() {
-	
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = () => {
-    if (email === '' || password === '') {
-      Alert.alert('Erro', 'Por favor, preencha todos os campos.');
-      return;
-    }
-    Alert.alert('Sucesso', `Bem-vindo, ${email}!`);
-  };
+  const [selectedValue, setSelectedValue] = useState('setorOption1')
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Registrar</Text>
-      <Input 
-        label="E-mail"
-        placeholder="Digite seu e-mail"
-        value={email}
-        onChangeText={setEmail}
-				secureTextEntry={false}
+      <Image
+        source={require('../../assets/images/logo.png')}
+        style={styles.image}
       />
-      <Input 
-        label="Senha"
-        placeholder="Digite sua senha"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-      <Button title="Entrar" onPress={handleLogin} />
+      <View style={styles.innerContainer}>
+        <View style={styles.header}>
+          <Text style={styles.h1}>Registrar</Text>
+        </View>
+
+        <View style={styles.formContainer}>
+          <View style={styles.formField}>
+            <Text style={styles.h2}>Nome completo</Text>
+            <Input></Input>
+          </View>
+          <View style={styles.formField}>
+            <Text style={styles.h2}>Nome de usuário</Text>
+            <Input></Input>
+          </View>
+          <View style={styles.formField}>
+            <Text style={styles.h2}>Email</Text>
+            <Input></Input>
+          </View>
+          <View style={styles.formField}>
+            <Text style={styles.h2}>Setor</Text>
+            <DropdownInput
+              selectedValue={selectedValue}
+              setSelectedValue={setSelectedValue}
+            ></DropdownInput>
+          </View>
+        </View>
+      </View>
     </View>
-  );
-};
+  )
+}
