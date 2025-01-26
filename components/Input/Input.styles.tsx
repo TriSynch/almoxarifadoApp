@@ -9,5 +9,7 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 10,
     backgroundColor: '#fff',
+		fontFamily: 'Urbanist_500Medium',
+		fontSize: 20,
   }
 });
