@@ -3,20 +3,31 @@ import { View, Text, Image, TouchableOpacity, ScrollView, KeyboardAvoidingView, 
 import { styles } from './SignUpScreen.styles'
 import Input from '@/components/Input/Input'
 import DropdownInput from '@/components/DropdownInput/DropdownInput'
+import { useNavigation } from 'expo-router'
+import Animated, { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
 export default function SignUpScreen() {
   const [selectedValue, setSelectedValue] = useState('setorOption1')
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const navigation = useNavigation<any>();
+  const translateX = useSharedValue(0);
 
 	function handleClick() {
-		console.log('back')
+		navigation.navigate('SignUpPart2');
 	}
+		
+	const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateX: translateX.value }],
+    };
+  });
 
   return (
 		<KeyboardAvoidingView
       style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-    >
-    <View style={styles.container}>
+    >	
+    <Animated.View style={[styles.container, animatedStyle]}>
       <Image
         source={require('../../assets/images/logo.png')}
         style={styles.logo}
@@ -57,7 +68,7 @@ export default function SignUpScreen() {
 					</TouchableOpacity >
 				</View>
       </ScrollView>
-    </View>
+    </Animated.View>
 		</KeyboardAvoidingView>
   )
 }
