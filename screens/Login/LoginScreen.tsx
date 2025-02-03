@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text, Alert, Image, ScrollView, TouchableOpacity } from 'react-native';
 import Input from '@/components/Input/Input';
 import PrimaryButton from '@/components/PrimaryButton/PrimaryButton';
 import { styles } from './LoginScreen.styles';
@@ -17,23 +17,51 @@ const LoginScreen = () => {
   };
 
   return (
+    
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <Input 
-        label="E-mail"
+      <Image
+              source={require('../../assets/images/logo.png')}
+              style={styles.logo}
+      />
+      <ScrollView style={styles.innerContainer}>
+
+      <View style={styles.header}>
+        <Text style={styles.title}>Login</Text>
+      </View>
+
+      <View style={styles.formContainer}>
+
+      <View style={styles.formField}>
+        <Text style={styles.h2}>Email</Text>
+        <Input 
+        label="email"
         placeholder="Digite seu e-mail"
         value={email}
         onChangeText={setEmail}
 				secureTextEntry={false}
-      />
-      <Input 
-        label="Senha"
+        />
+      </View>
+      
+      <View style={styles.formField}>
+        <Text style={styles.h2}>Senha</Text>
+        <Input style ={styles.input}
+        label="senha"
         placeholder="Digite sua senha"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
-      />
-      <PrimaryButton title="Entrar" onPress={handleLogin} />
+        />
+      </View>
+      
+      <View style={styles.bottom}>
+        <PrimaryButton title={"Entrar"}></PrimaryButton>
+      </View>
+      
+
+      </View>
+      
+      </ScrollView>
+      
     </View>
   );
 };

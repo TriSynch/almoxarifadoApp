@@ -1,5 +1,6 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text} from 'react-native';
+import {styles} from "./PrimaryButton.styles";
 
 const PrimaryButton = ({ title, onPress }) => {
   return (
@@ -9,20 +10,5 @@ const PrimaryButton = ({ title, onPress }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: '#007BFF',
-    borderRadius: 8,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  text: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
 
 export default PrimaryButton;
