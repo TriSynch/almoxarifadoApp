@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     text: {
         color: "#ffffff",
         fontFamily: "Urbanist_700Bold",
-        fontSize: 28,
+        fontSize: 35,
         marginBottom: "2%"
     }
 
