@@ -54,13 +54,27 @@ export const styles = StyleSheet.create({
 	formField: {
 		marginBottom: 5,
 	},
-	bottom: {
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
 	buttonBottom: {
 		backgroundColor: '#c9f207',
 		padding: 10,
 		borderRadius: 50,
-	}
+	},
+	h4: {
+		fontSize: 16,
+		marginBottom: 5,
+		color: '#ffffff',
+		opacity: 0.5,
+		fontFamily: 'Urbanist_500Medium',
+		textAlign: 'center',
+	},
+	bottomText: {
+		marginBottom: 50,
+		padding: 20,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	bottom1: {
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 });
