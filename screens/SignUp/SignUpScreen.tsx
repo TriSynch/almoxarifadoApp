@@ -34,17 +34,16 @@ const SignUpSchema = Yup.object().shape({
 })
 
 export default function SignUpScreen() {
-	const { signUp, loading, error, success } = useSignUp()
+  const { signUp, loading, error, success } = useSignUp()
   const [selectedValue, setSelectedValue] = useState('setorOption1')
   const [showLastFields, setShowLastFields] = useState(false) // State to control visibility
 
   function handleClick() {
     setShowLastFields(true) // Show the last two fields when the button is clicked
   }
-  
+
   function handleReturn() {
-    ScrollView.current?.scrollTo({ y: 0, animated: true });
-    setShowLastFields(false); // Hide the last two fields when returning to the top
+    setShowLastFields(false) // Hide the last two fields when returning to the top
   }
 
   return (
@@ -66,7 +65,7 @@ export default function SignUpScreen() {
             password: '',
             confirmPassword: '',
           }}
-					// TODO: Implementar validação de formulário
+          // TODO: Implementar validação de formulário
           validationSchema={SignUpSchema}
           onSubmit={async (values) => {
             console.log('Formik onSubmit triggered')
@@ -74,7 +73,7 @@ export default function SignUpScreen() {
           }}
         >
           {({ handleSubmit, values, errors, setFieldValue }) => {
-						console.log('Formik error object:', errors)
+            console.log('Formik error object:', errors)
             return (
               <ScrollView style={styles.innerContainer}>
                 <View style={styles.header}>
@@ -171,16 +170,10 @@ export default function SignUpScreen() {
                 {showLastFields && (
                   <>
                     <View style={styles.bottom1}>
-                      <ReturnButton
-                        title={'Retornar'}
-                        onPress={handleReturn}
-                      />
+                      <ReturnButton title={'Retornar'} onPress={handleReturn} />
                     </View>
                     <View style={styles.bottom2}>
-                      <PrimaryButton
-                        title={'Salvar'}
-                        onPress={handleSubmit}
-                      />
+                      <PrimaryButton title={'Salvar'} onPress={handleSubmit} />
                     </View>
                   </>
                 )}
