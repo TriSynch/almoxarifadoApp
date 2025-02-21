@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput } from 'react-native';
 import { styles } from './Input.styles';
 
-const Input = ({ placeholder, value, fieldName, setFieldValue }: {
+const Input = ({ placeholder, value, fieldName, setFieldValue, error }: {
 	placeholder?: string;
 	value: string;
 	fieldName: string;
@@ -10,7 +10,7 @@ const Input = ({ placeholder, value, fieldName, setFieldValue }: {
 }) => {
   return (
     <TextInput
-        style={styles.input}
+        style={[styles.input, error && { borderColor: 'red', borderWidth: 4 }]}
         placeholder={placeholder}
         value={value}
 				onChangeText={(value) => setFieldValue(fieldName, value)}

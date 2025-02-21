@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
 	formContainer: {
 		marginRight: 30,
 		marginLeft: 30,
-		marginBottom: 35,
+		marginBottom: 15,
 	},
 	formField: {
 		marginBottom: 5,
@@ -61,20 +61,26 @@ export const styles = StyleSheet.create({
 	},
 	h4: {
 		fontSize: 16,
-		marginBottom: 5,
+		marginBottom: 0,
 		color: '#ffffff',
 		opacity: 0.5,
 		fontFamily: 'Urbanist_500Medium',
 		textAlign: 'center',
 	},
 	bottomText: {
-		marginBottom: 50,
-		padding: 20,
+		marginBottom: 4,
+		padding: 4,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	bottom1: {
 		justifyContent: 'center',
 		alignItems: 'center',
+		marginBottom: "8%",
+	},
+	bottom2: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginBottom: 7,
 	},
 });
