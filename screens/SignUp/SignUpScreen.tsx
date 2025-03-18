@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
   View,
   Text,
@@ -14,30 +14,40 @@ import { styles } from './SignUpScreen.styles'
 import Input from '@/components/Input/Input'
 import DropdownInput from '@/components/DropdownInput/DropdownInput'
 import PrimaryButton from '@/components/PrimaryButton/PrimaryButton'
+import ReturnButton from '@/components/ReturnButton/ReturnButton'
 import { Formik } from 'formik'
 import { useSignUp } from '@/hooks/signUp/useSignUp'
+import * as Yup from 'yup'
 
 // TODO: Implementar validação de formulário
-// const SignUpSchema = Yup.object().shape({
-//   fullName: Yup.string().required('Nome completo é obrigatório'),
-//   username: Yup.string().required('Nome de usuário é obrigatório'),
-//   email: Yup.string().email('Email inválido').required('Email é obrigatório'),
-//   sector: Yup.string().required('Setor é obrigatório'),
-//   password: Yup.string()
-//     .min(8, 'A senha deve ter no mínimo 8 caracteres')
-//     .required('Senha é obrigatória'),
-//   confirmPassword: Yup.string()
-//     .oneOf([Yup.ref('password'), undefined], 'As senhas devem coincidir')
-//     .required('Confirmar senha é obrigatório'),
-// })
+const SignUpSchema = Yup.object().shape({
+  fullName: Yup.string().required('Nome completo é obrigatório'),
+  username: Yup.string().required('Nome de usuário é obrigatório'),
+  email: Yup.string().email('Email inválido').required('Email é obrigatório'),
+  sector: Yup.string().required('Selecione um setor') // Valida se um valor foi selecionado
+    .oneOf(
+      ['logistica', 'expedicao', 'pessoal', 'financeiro', 'comercial', 'almoxarifado', 'contabilidade', 'producao'],
+      'Selecione um setor válido' // Valida se o valor selecionado está na lista de opções
+    ),
+  password: Yup.string()
+    .min(8, 'A senha deve ter no mínimo 8 caracteres')
+    .required('Senha é obrigatória'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('password'), undefined], 'As senhas devem coincidir')
+    .required('Confirmar senha é obrigatório'),
+})
 
 export default function SignUpScreen() {
-	const { signUp, loading, error, success } = useSignUp()
+  const { signUp, loading, error, success } = useSignUp()
   const [selectedValue, setSelectedValue] = useState('setorOption1')
   const [showLastFields, setShowLastFields] = useState(false) // State to control visibility
 
   function handleClick() {
     setShowLastFields(true) // Show the last two fields when the button is clicked
+  }
+
+  function handleReturn() {
+    setShowLastFields(false) // Hide the last two fields when returning to the top
   }
 
   return (
@@ -59,15 +69,15 @@ export default function SignUpScreen() {
             password: '',
             confirmPassword: '',
           }}
-					// TODO: Implementar validação de formulário
-          // validationSchema={SignUpSchema}
+          // TODO: Implementar validação de formulário
+          validationSchema={SignUpSchema}
           onSubmit={async (values) => {
             console.log('Formik onSubmit triggered')
             await signUp(values)
           }}
         >
           {({ handleSubmit, values, errors, setFieldValue }) => {
-						console.log('Formik error object:', errors)
+            console.log('Formik error object:', errors)
             return (
               <ScrollView style={styles.innerContainer}>
                 <View style={styles.header}>
@@ -83,6 +93,7 @@ export default function SignUpScreen() {
                           value={values.fullName}
                           fieldName="fullName"
                           setFieldValue={setFieldValue}
+                          error={errors.fullName}
                         ></Input>
                       </View>
                       <View style={styles.formField}>
@@ -91,6 +102,7 @@ export default function SignUpScreen() {
                           value={values.username}
                           fieldName="username"
                           setFieldValue={setFieldValue}
+                          error={errors.username}
                         ></Input>
                       </View>
                       <View style={styles.formField}>
@@ -99,13 +111,15 @@ export default function SignUpScreen() {
                           value={values.email}
                           fieldName="email"
                           setFieldValue={setFieldValue}
+                          error={errors.email}
                         ></Input>
                       </View>
                       <View style={styles.formField}>
                         <Text style={styles.h2}>Setor</Text>
                         <DropdownInput
-                          selectedValue={selectedValue}
-                          setSelectedValue={setSelectedValue}
+                          selectedValue={values.sector}
+                          setSelectedValue={(value) => setFieldValue('sector', value)}
+                          
                         ></DropdownInput>
                       </View>
                     </>
@@ -119,6 +133,7 @@ export default function SignUpScreen() {
                           value={values.password}
                           fieldName="password"
                           setFieldValue={setFieldValue}
+                          error={errors.password}
                         ></Input>
                       </View>
                       <View style={styles.formField}>
@@ -127,6 +142,7 @@ export default function SignUpScreen() {
                           value={values.confirmPassword}
                           fieldName="confirmPassword"
                           setFieldValue={setFieldValue}
+                          error={errors.confirmPassword}
                         ></Input>
                       </View>
                       <View style={styles.bottomText}>
@@ -159,10 +175,10 @@ export default function SignUpScreen() {
                 {showLastFields && (
                   <>
                     <View style={styles.bottom1}>
-                      <PrimaryButton
-                        title={'Salvar'}
-                        onPress={handleSubmit}
-                      />
+                      <ReturnButton title={'Retornar'} onPress={handleReturn} />
+                    </View>
+                    <View style={styles.bottom2}>
+                      <PrimaryButton title={'Salvar'} onPress={handleSubmit} />
                     </View>
                   </>
                 )}
