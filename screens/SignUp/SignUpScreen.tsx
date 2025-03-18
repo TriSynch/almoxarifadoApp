@@ -24,7 +24,11 @@ const SignUpSchema = Yup.object().shape({
   fullName: Yup.string().required('Nome completo é obrigatório'),
   username: Yup.string().required('Nome de usuário é obrigatório'),
   email: Yup.string().email('Email inválido').required('Email é obrigatório'),
-  sector: Yup.string().required('Setor é obrigatório'),
+  sector: Yup.string().required('Selecione um setor') // Valida se um valor foi selecionado
+    .oneOf(
+      ['logistica', 'expedicao', 'pessoal', 'financeiro', 'comercial', 'almoxarifado', 'contabilidade', 'producao'],
+      'Selecione um setor válido' // Valida se o valor selecionado está na lista de opções
+    ),
   password: Yup.string()
     .min(8, 'A senha deve ter no mínimo 8 caracteres')
     .required('Senha é obrigatória'),
@@ -113,8 +117,9 @@ export default function SignUpScreen() {
                       <View style={styles.formField}>
                         <Text style={styles.h2}>Setor</Text>
                         <DropdownInput
-                          selectedValue={selectedValue}
-                          setSelectedValue={setSelectedValue}
+                          selectedValue={values.sector}
+                          setSelectedValue={(value) => setFieldValue('sector', value)}
+                          
                         ></DropdownInput>
                       </View>
                     </>
